@@ -1,1866 +1,1125 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#08080b">
-<meta name="description" content="SENA — Still Becoming. An unfinished perspective in an endlessly interesting world. Creative Developer & Digital Explorer.">
-<meta name="author" content="Irsyad Fariz Sena Pratama">
-<title>SENA — Still Becoming</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08080c">
+  <meta name="description" content="SENA — Still Becoming. An unfinished perspective in an endlessly interesting world.">
+  <title>SENA — STILL BECOMING</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-:root {
-  --bg:#08080b;
-  --surface:#111116;
-  --surface2:#18181f;
-  --white:#f2f0eb;
-  --muted:#88858f;
-  --line:rgba(255,255,255,.12);
-  --violet:#8d72ff;
-  --blue:#637dff;
-  --gold:#c6a875;
-  --font-display:'Syne',sans-serif;
-  --font-body:'DM Sans',sans-serif;
-  --font-mono:'DM Mono',monospace;
-  --nav-height:76px;
-}
+  <style>
+    :root {
+      --bg: #08080c;
+      --surface: #111116;
+      --ivory: #f1eee8;
+      --muted: #92909b;
+      --violet: #8064ff;
+      --blue: #547aff;
+      --gold: #b89b68;
+      --line: rgba(255,255,255,.12);
+      --mono: "DM Mono", monospace;
+      --body: "DM Sans", sans-serif;
+      --display: "Syne", sans-serif;
+    }
 
-* {margin:0;padding:0;box-sizing:border-box}
-html {scroll-behavior:smooth;scroll-padding-top:90px}
-body {
-  background:var(--bg);
-  color:var(--white);
-  font-family:var(--font-body);
-  overflow-x:hidden;
-  line-height:1.6;
-}
-body.modal-open {overflow:hidden}
-::selection {background:var(--violet);color:white}
-a {color:inherit;text-decoration:none}
-button,input,textarea,select {font:inherit}
-button {color:inherit}
-img {display:block;max-width:100%}
-section {position:relative;padding:130px 8%}
-.container {max-width:1450px;margin:auto}
-.mono {font-family:var(--font-mono)}
-.muted {color:var(--muted)}
-.accent {color:var(--violet)}
-.gold {color:var(--gold)}
-.eyebrow {
-  font:11px var(--font-mono);
-  color:var(--gold);
-  letter-spacing:2px;
-  text-transform:uppercase;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.eyebrow:before {
-  content:"";
-  width:28px;
-  height:1px;
-  background:var(--gold);
-}
-.section-heading {
-  font:700 clamp(42px,7vw,88px)/1.05 var(--font-display);
-  letter-spacing:-4px;
-  margin:22px 0 30px;
-}
-.section-description {
-  color:var(--muted);
-  max-width:520px;
-  font-size:15px;
-  line-height:1.9;
-}
-.grain {
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:1000;
-  opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-}
-#progress {
-  position:fixed;
-  top:0;left:0;
-  height:2px;
-  width:0;
-  background:linear-gradient(90deg,var(--violet),var(--gold));
-  z-index:2000;
-}
-#cursor {
-  position:fixed;
-  width:12px;height:12px;
-  border:1px solid var(--white);
-  border-radius:50%;
-  pointer-events:none;
-  z-index:3000;
-  transform:translate(-50%,-50%);
-  transition:width .2s,height .2s,background .2s;
-  display:none;
-}
-#cursor.active {
-  width:40px;height:40px;
-  background:rgba(141,114,255,.15);
-  border-color:var(--violet);
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* NAVIGATION */
-nav {
-  position:fixed;
-  z-index:1500;
-  top:0;left:0;width:100%;
-  height:var(--nav-height);
-  padding:0 8%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid transparent;
-  transition:.3s;
-}
-nav.scrolled {
-  background:rgba(8,8,11,.88);
-  backdrop-filter:blur(20px);
-  border-color:var(--line);
-}
-.logo {
-  font:800 25px var(--font-display);
-  letter-spacing:4px;
-}
-.logo span {color:var(--violet)}
-.nav-links {
-  display:flex;
-  align-items:center;
-  gap:30px;
-}
-.nav-links a {
-  font:11px var(--font-mono);
-  color:var(--muted);
-  transition:.3s;
-}
-.nav-links a:hover,.nav-links a.active {color:var(--white)}
-.nav-links a.active:after {
-  content:"";
-  display:block;
-  height:1px;
-  background:var(--violet);
-  margin-top:5px;
-}
-.nav-contact {
-  border:1px solid var(--line);
-  padding:10px 19px;
-  border-radius:3px;
-}
-.menu-toggle {
-  display:none;
-  background:none;
-  border:0;
-  font-size:24px;
-  cursor:pointer;
-}
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
 
-/* HERO */
-#hero {
-  min-height:100svh;
-  padding:140px 8% 65px;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-}
-#particles {
-  position:absolute;
-  inset:0;
-  width:100%;height:100%;
-  pointer-events:none;
-}
-.hero-glow {
-  position:absolute;
-  width:600px;height:600px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(103,74,255,.16),transparent 70%);
-  right:0;top:10%;
-  pointer-events:none;
-}
-.hero-content {
-  position:relative;
-  z-index:2;
-  width:100%;
-  max-width:1450px;
-  margin:auto;
-}
-.hero-topline {
-  display:flex;
-  justify-content:space-between;
-  color:var(--muted);
-  font:10px var(--font-mono);
-  letter-spacing:1px;
-  margin-bottom:55px;
-}
-.hero-title {
-  font:800 clamp(100px,22vw,300px)/.78 var(--font-display);
-  letter-spacing:-.095em;
-  margin-left:-.055em;
-  position:relative;
-  width:max-content;
-  max-width:100%;
-}
-.hero-title span {
-  display:inline-block;
-  background:linear-gradient(135deg,#fff 15%,#a8a2b9 55%,#7163a9);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  animation:titleReveal 1.5s cubic-bezier(.2,.8,.2,1) both;
-}
-@keyframes titleReveal {
-  from {opacity:0;transform:translateY(100px);filter:blur(15px)}
-  to {opacity:1;transform:translateY(0);filter:blur(0)}
-}
-.hero-title:after {
-  content:"®";
-  position:absolute;
-  right:-30px;top:5px;
-  font:16px var(--font-mono);
-  color:var(--gold);
-  letter-spacing:0;
-}
-.hero-bottom {
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  margin-top:60px;
-  gap:30px;
-}
-.hero-intro {max-width:550px}
-.hero-name {
-  font:12px var(--font-mono);
-  color:var(--gold);
-  letter-spacing:1px;
-  margin-bottom:15px;
-}
-.hero-role {
-  font:700 clamp(22px,3vw,36px)/1.3 var(--font-display);
-}
-.hero-description {
-  color:var(--muted);
-  max-width:440px;
-  margin-top:15px;
-  font-size:14px;
-}
-.hero-actions {display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-.btn {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  padding:14px 23px;
-  font:11px var(--font-mono);
-  letter-spacing:.5px;
-  border:1px solid var(--line);
-  background:transparent;
-  cursor:pointer;
-  transition:.3s;
-  border-radius:2px;
-}
-.btn-primary {background:var(--white);color:var(--bg);border-color:var(--white)}
-.btn:hover {transform:translateY(-4px);border-color:var(--violet)}
-.btn-primary:hover {background:var(--violet);color:white}
-.hero-terminal {
-  width:310px;
-  border:1px solid var(--line);
-  background:rgba(18,18,24,.75);
-  backdrop-filter:blur(12px);
-  padding:17px;
-  font:10px/2 var(--font-mono);
-  color:var(--muted);
-}
-.terminal-header {display:flex;gap:5px;margin-bottom:13px}
-.terminal-dot {width:7px;height:7px;border-radius:50%;background:#555}
-.terminal-dot:first-child {background:#e06b6b}
-.terminal-dot:nth-child(2) {background:#d5b56a}
-.terminal-dot:nth-child(3) {background:#78ba85}
-.terminal-output {color:#b5b0c6}
-.terminal-output span {color:#9b84ff}
-.terminal-cursor {animation:blink 1s infinite}
-@keyframes blink {50%{opacity:0}}
-.scroll-indicator {
-  position:absolute;
-  bottom:30px;left:8%;
-  font:10px var(--font-mono);
-  color:var(--muted);
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
-.scroll-indicator:before {
-  content:"";
-  width:35px;height:1px;
-  background:var(--gold);
-}
+    body {
+      font-family: var(--body);
+      color: var(--ivory);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
 
-/* ABOUT */
-#about {background:#0b0b10}
-.about-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:100px;
-  align-items:center;
-}
-.about-quote {
-  font:600 clamp(34px,5vw,64px)/1.2 var(--font-display);
-  letter-spacing:-2px;
-  margin:30px 0;
-}
-.about-quote em {color:var(--violet);font-style:normal}
-.about-text {
-  color:var(--muted);
-  font-size:14px;
-  line-height:2;
-  margin-bottom:20px;
-}
-.about-visual {
-  min-height:470px;
-  position:relative;
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  background:radial-gradient(circle at 50% 50%,#262039,#111117 50%,#0b0b10);
-  border:1px solid var(--line);
-}
-.orbit {
-  position:absolute;
-  border:1px solid rgba(179,155,255,.25);
-  border-radius:50%;
-  width:300px;height:300px;
-  transform:rotate(-25deg) scaleY(.35);
-  animation:orbit 14s linear infinite;
-}
-.orbit:nth-child(2) {width:380px;height:380px;animation-duration:20s;transform:rotate(45deg) scaleY(.35)}
-.orbit:nth-child(3) {width:450px;height:450px;animation-duration:25s;transform:rotate(90deg) scaleY(.35)}
-@keyframes orbit {to{rotate:360deg}}
-.core {
-  width:135px;height:135px;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#d4c7ff,#7253ce 40%,#171027 75%);
-  box-shadow:0 0 90px rgba(141,114,255,.4);
-  animation:float 5s ease-in-out infinite;
-}
-@keyframes float {50%{transform:translateY(-18px) scale(1.05)}}
-.visual-label {
-  position:absolute;
-  bottom:20px;left:20px;
-  font:10px var(--font-mono);
-  color:var(--muted);
-}
+    body::selection {
+      background: var(--violet);
+      color: white;
+    }
 
-/* SKILLS */
-.skills-intro {
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  margin-bottom:65px;
-  gap:30px;
-}
-.skills-grid {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  border-top:1px solid var(--line);
-}
-.skill-group {
-  padding:35px 35px 35px 0;
-  border-bottom:1px solid var(--line);
-}
-.skill-group:nth-child(odd) {border-right:1px solid var(--line)}
-.skill-group:nth-child(even) {padding-left:35px}
-.skill-group h3 {
-  font:600 22px var(--font-display);
-  margin-bottom:25px;
-}
-.skill-list {display:flex;flex-wrap:wrap;gap:10px}
-.skill {
-  font:11px var(--font-mono);
-  padding:9px 13px;
-  border:1px solid var(--line);
-  color:var(--muted);
-  transition:.3s;
-}
-.skill:hover {color:white;border-color:var(--violet);background:rgba(141,114,255,.08);transform:translateY(-3px)}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* PROJECTS */
-#projects {background:#0b0b10}
-.project-top {
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:30px;
-  margin-bottom:50px;
-}
-.filters {
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:35px;
-}
-.filter-btn {
-  border:1px solid var(--line);
-  padding:9px 14px;
-  background:none;
-  color:var(--muted);
-  font:10px var(--font-mono);
-  cursor:pointer;
-  transition:.3s;
-}
-.filter-btn.active,.filter-btn:hover {
-  background:var(--white);
-  color:var(--bg);
-  border-color:var(--white);
-}
-.project-grid {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:50px 25px;
-}
-.project-card {
-  cursor:pointer;
-  transition:opacity .3s,transform .4s;
-  min-width:0;
-}
-.project-card.hidden {display:none}
-.project-image {
-  position:relative;
-  aspect-ratio:16/10;
-  overflow:hidden;
-  background:var(--surface2);
-  border:1px solid var(--line);
-}
-.project-image img {
-  width:100%;height:100%;
-  object-fit:cover;
-  transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .5s;
-  filter:brightness(.75) saturate(.8);
-}
-.project-card:hover .project-image img {transform:scale(1.07);filter:brightness(1) saturate(1)}
-.project-number {
-  position:absolute;
-  top:15px;left:15px;
-  font:10px var(--font-mono);
-  color:white;
-  background:rgba(0,0,0,.55);
-  padding:7px 10px;
-}
-.project-view {
-  position:absolute;
-  right:15px;bottom:15px;
-  width:42px;height:42px;
-  border:1px solid rgba(255,255,255,.6);
-  border-radius:50%;
-  display:grid;place-items:center;
-  background:rgba(0,0,0,.4);
-  transition:.3s;
-}
-.project-card:hover .project-view {background:white;color:black;transform:rotate(45deg)}
-.project-meta {
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  margin-top:20px;
-  font:10px var(--font-mono);
-  color:var(--gold);
-  text-transform:uppercase;
-}
-.project-title {
-  font:600 clamp(23px,3vw,34px) var(--font-display);
-  margin-top:7px;
-}
-.project-description {color:var(--muted);font-size:13px;margin-top:8px;max-width:500px}
-.project-tags {display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
-.project-tags span {font:9px var(--font-mono);color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:4px}
+    button {
+      font: inherit;
+    }
 
-/* MODAL */
-.modal {
-  position:fixed;
-  inset:0;
-  z-index:2500;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background:rgba(0,0,0,.85);
-  backdrop-filter:blur(15px);
-  padding:20px;
-}
-.modal.open {display:flex;animation:fadeIn .3s}
-@keyframes fadeIn {from{opacity:0}to{opacity:1}}
-.modal-content {
-  width:100%;
-  max-width:1000px;
-  max-height:90vh;
-  overflow-y:auto;
-  background:#111116;
-  border:1px solid var(--line);
-  position:relative;
-  padding:45px;
-}
-.modal-close {
-  position:sticky;
-  top:0;
-  float:right;
-  z-index:5;
-  width:40px;height:40px;
-  border:1px solid var(--line);
-  background:#18181f;
-  cursor:pointer;
-  font-size:20px;
-}
-.modal-content h2 {
-  font:700 clamp(35px,6vw,65px) var(--font-display);
-  letter-spacing:-2px;
-  margin:20px 0;
-}
-.modal-hero {width:100%;aspect-ratio:16/8;object-fit:cover;margin:30px 0;background:var(--surface2)}
-.modal-section {margin:35px 0}
-.modal-section h3 {font:600 19px var(--font-display);margin-bottom:12px}
-.modal-section p {font-size:14px;color:var(--muted);line-height:1.9}
-.modal-tech {display:flex;gap:8px;flex-wrap:wrap}
-.modal-tech span {border:1px solid var(--line);padding:8px 12px;font:10px var(--font-mono)}
-.modal-links {display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      pointer-events: none;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
 
-/* JOURNEY */
-.timeline {
-  margin-top:65px;
-  position:relative;
-  max-width:900px;
-}
-.timeline:before {
-  content:"";
-  position:absolute;
-  left:115px;top:0;bottom:0;
-  width:1px;background:var(--line);
-}
-.timeline-item {
-  display:grid;
-  grid-template-columns:115px 1fr;
-  padding-bottom:55px;
-  position:relative;
-}
-.timeline-item:before {
-  content:"";
-  position:absolute;
-  left:110px;top:8px;
-  width:10px;height:10px;
-  border:1px solid var(--violet);
-  background:var(--bg);
-  border-radius:50%;
-  z-index:2;
-}
-.timeline-date {font:10px var(--font-mono);color:var(--gold)}
-.timeline-content {padding-left:35px}
-.timeline-content h3 {font:600 22px var(--font-display);margin-bottom:9px}
-.timeline-content p {font-size:13px;color:var(--muted);max-width:570px}
-.timeline-content small {display:block;color:var(--violet);font:10px var(--font-mono);margin-top:12px}
+    .cursor-glow {
+      position: fixed;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle, rgba(128,100,255,.09), transparent 70%);
+      transform: translate(-50%, -50%);
+      transition: opacity .3s;
+    }
 
-/* EXPLORATION */
-#exploring {background:#0b0b10}
-.explore-list {margin-top:55px;border-top:1px solid var(--line)}
-.explore-item {
-  border-bottom:1px solid var(--line);
-}
-.explore-trigger {
-  width:100%;
-  background:none;
-  border:0;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  text-align:left;
-  padding:23px 0;
-}
-.explore-trigger h3 {
-  font:600 clamp(21px,3vw,34px) var(--font-display);
-  transition:.3s;
-}
-.explore-trigger:hover h3 {color:var(--violet);padding-left:10px}
-.explore-trigger span {font:18px var(--font-mono);color:var(--gold)}
-.explore-detail {
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .5s ease;
-}
-.explore-detail p {
-  color:var(--muted);
-  font-size:14px;
-  max-width:650px;
-  padding:0 0 25px;
-  line-height:1.9;
-}
-.explore-item.open .explore-detail {max-height:180px}
+    /* NAVIGATION */
 
-/* CONTACT */
-.contact-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:100px;
-}
-.contact-heading {
-  font:700 clamp(45px,7vw,90px)/1.05 var(--font-display);
-  letter-spacing:-4px;
-  margin:25px 0;
-}
-.contact-heading em {font-style:normal;color:var(--violet)}
-.contact-links {display:flex;gap:20px;flex-wrap:wrap;margin-top:35px}
-.contact-links a {font:11px var(--font-mono);color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:5px}
-.contact-links a:hover {color:white;border-color:var(--violet)}
-.contact-form {display:flex;flex-direction:column;gap:20px}
-.form-group {display:flex;flex-direction:column;gap:9px}
-.form-group label {font:10px var(--font-mono);color:var(--gold);text-transform:uppercase}
-.form-group input,.form-group textarea,.form-group select {
-  background:transparent;
-  border:0;
-  border-bottom:1px solid var(--line);
-  color:var(--white);
-  padding:12px 0;
-  outline:none;
-  border-radius:0;
-  width:100%;
-  font-size:13px;
-}
-.form-group select option {background:var(--surface)}
-.form-group textarea {resize:vertical;min-height:100px}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus {border-color:var(--violet)}
-.form-status {font:11px var(--font-mono);color:var(--gold);min-height:20px}
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 27px 6%;
+      background: linear-gradient(to bottom, rgba(8,8,12,.8), transparent);
+      backdrop-filter: blur(8px);
+    }
 
-/* FOOTER */
-footer {
-  padding:50px 8% 25px;
-  border-top:1px solid var(--line);
-}
-.footer-top {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:25px;
-  padding-bottom:45px;
-}
-.footer-brand {font:800 clamp(45px,9vw,100px)/1 var(--font-display);letter-spacing:-6px}
-.footer-brand span {color:var(--violet)}
-.footer-statement {font:600 17px var(--font-display);color:var(--muted)}
-.footer-bottom {
-  border-top:1px solid var(--line);
-  padding-top:20px;
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
-  color:var(--muted);
-  font:10px var(--font-mono);
-}
-.back-top {cursor:pointer;color:var(--white);border:0;background:none;font:10px var(--font-mono)}
-.back-top:hover {color:var(--violet)}
+    .logo {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: -.08em;
+    }
 
-/* REVEAL */
-.reveal {opacity:0;transform:translateY(35px);transition:opacity .8s,transform .8s}
-.reveal.visible {opacity:1;transform:translateY(0)}
-.delay-1 {transition-delay:.1s}
-.delay-2 {transition-delay:.2s}
-.delay-3 {transition-delay:.3s}
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
 
-/* RESPONSIVE */
-@media(min-width:1100px) {
-  body.custom-cursor,a,button,.project-card {cursor:none}
-}
-@media(max-width:900px) {
-  section {padding:100px 6%}
-  nav {padding:0 6%}
-  .nav-links {gap:15px}
-  .about-grid,.contact-grid {gap:45px}
-  .hero-bottom {align-items:flex-start}
-  .hero-terminal {width:270px}
-}
-@media(max-width:650px) {
-  :root {--nav-height:65px}
-  section {padding:85px 6%}
-  .nav-links {
-    display:none;
-    position:absolute;
-    top:65px;left:0;width:100%;
-    background:#101015;
-    padding:25px 6%;
-    border-bottom:1px solid var(--line);
-    flex-direction:column;
-    align-items:flex-start;
-    gap:22px;
-  }
-  .nav-links.show {display:flex}
-  .menu-toggle {display:block}
-  .nav-contact {display:none}
-  #hero {padding:120px 6% 80px;min-height:900px}
-  .hero-topline {margin-bottom:65px}
-  .hero-title {font-size:clamp(85px,24vw,155px)}
-  .hero-title:after {right:-18px;font-size:12px}
-  .hero-bottom {flex-direction:column;margin-top:45px}
-  .hero-terminal {width:100%;max-width:350px}
-  .hero-topline span:last-child {display:none}
-  .scroll-indicator {left:6%}
-  .about-grid,.contact-grid {grid-template-columns:1fr;gap:40px}
-  .about-visual {min-height:350px;grid-row:1}
-  .skills-intro,.project-top {display:block}
-  .skills-grid {grid-template-columns:1fr}
-  .skill-group,.skill-group:nth-child(even) {padding:30px 0;border-right:0}
-  .project-grid {grid-template-columns:1fr;gap:40px}
-  .timeline:before {left:4px}
-  .timeline-item {grid-template-columns:1fr;padding-left:25px}
-  .timeline-item:before {left:0}
-  .timeline-date {margin-bottom:10px}
-  .timeline-content {padding-left:0}
-  .modal {padding:8px}
-  .modal-content {padding:25px 18px;max-height:95vh}
-  .footer-top {align-items:flex-start;flex-direction:column}
-  .footer-brand {letter-spacing:-3px}
-  .contact-heading {letter-spacing:-2px}
-}
-@media(prefers-reduced-motion:reduce) {
-  *,*::before,*::after {
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    transition-duration:.01ms!important;
-    scroll-behavior:auto!important;
-  }
-  .reveal {opacity:1;transform:none}
-}
-</style>
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      transition: color .3s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .menu-toggle {
+      display: none;
+      color: white;
+      background: none;
+      border: 0;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 130px 7% 100px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .morph-scene {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .morph-orb {
+      position: absolute;
+      width: min(75vw, 850px);
+      aspect-ratio: 1;
+      top: 48%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 40% 40%,
+        rgba(181,164,255,.32),
+        rgba(128,100,255,.22) 25%,
+        rgba(84,122,255,.13) 48%,
+        transparent 70%
+      );
+      filter: blur(30px);
+      animation: orb-float 12s ease-in-out infinite alternate;
+    }
+
+    .morph-blob {
+      position: absolute;
+      width: min(58vw, 650px);
+      aspect-ratio: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(
+        135deg,
+        rgba(128,100,255,.52),
+        rgba(84,122,255,.36),
+        rgba(184,155,104,.2)
+      );
+      opacity: .5;
+      filter: url(#liquid-filter) blur(2px);
+      animation: blob-morph 16s ease-in-out infinite alternate;
+    }
+
+    .morph-blob.second {
+      width: min(35vw, 420px);
+      opacity: .35;
+      background: linear-gradient(135deg, #547aff, #8064ff);
+      animation: blob-morph-two 19s ease-in-out infinite alternate;
+    }
+
+    @keyframes blob-morph {
+      0% {
+        border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+        transform: translate(-50%, -50%) rotate(0deg) scale(.9);
+      }
+      25% {
+        border-radius: 65% 35% 42% 58% / 55% 65% 35% 45%;
+      }
+      50% {
+        border-radius: 35% 65% 55% 45% / 65% 35% 55% 45%;
+        transform: translate(-48%, -52%) rotate(90deg) scale(1.1);
+      }
+      75% {
+        border-radius: 55% 45% 35% 65% / 40% 60% 40% 60%;
+      }
+      100% {
+        border-radius: 48% 52% 60% 40% / 55% 45% 55% 45%;
+        transform: translate(-52%, -48%) rotate(180deg) scale(.95);
+      }
+    }
+
+    @keyframes blob-morph-two {
+      from {
+        border-radius: 60% 40% 35% 65% / 50% 60% 40% 50%;
+        transform: translate(-40%, -45%) rotate(0deg);
+      }
+      to {
+        border-radius: 35% 65% 60% 40% / 60% 40% 60% 40%;
+        transform: translate(-60%, -55%) rotate(160deg);
+      }
+    }
+
+    @keyframes orb-float {
+      from {
+        transform: translate(-55%, -48%) scale(.9);
+      }
+      to {
+        transform: translate(-45%, -53%) scale(1.12);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      width: 100%;
+      max-width: 1300px;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 35px;
+    }
+
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(90px, 19vw, 260px);
+      line-height: .78;
+      letter-spacing: -.105em;
+      font-weight: 800;
+      color: var(--ivory);
+      position: relative;
+      display: inline-block;
+      animation: title-breathe 7s ease-in-out infinite;
+    }
+
+    .hero-title span {
+      display: inline-block;
+      background: linear-gradient(
+        115deg,
+        #fff 10%,
+        #b7aaff 40%,
+        #7896ff 70%,
+        #fff 95%
+      );
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradient-flow 9s linear infinite;
+    }
+
+    @keyframes gradient-flow {
+      to { background-position: 250% center; }
+    }
+
+    @keyframes title-breathe {
+      0%, 100% { transform: scaleX(1) scaleY(1); }
+      50% { transform: scaleX(1.025) scaleY(.975); }
+    }
+
+    .hero-bottom {
+      margin-top: 55px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+    }
+
+    .hero-description {
+      max-width: 410px;
+      font-size: clamp(15px, 1.5vw, 19px);
+      line-height: 1.7;
+      color: #b4b1bd;
+    }
+
+    .hero-description em {
+      color: white;
+      font-style: normal;
+    }
+
+    .scroll-indicator {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .18em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 65px;
+      height: 1px;
+      background: var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: white;
+      animation: line-slide 2s infinite;
+    }
+
+    @keyframes line-slide {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(100%); }
+    }
+
+    /* GENERAL SECTIONS */
+
+    section:not(.hero) {
+      position: relative;
+      padding: 140px 8%;
+      overflow: hidden;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 35px;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(42px, 7vw, 95px);
+      line-height: .98;
+      letter-spacing: -.07em;
+      font-weight: 700;
+    }
+
+    .section-title .accent {
+      color: var(--violet);
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: #0c0c11;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .about-copy {
+      font-size: clamp(17px, 1.6vw, 21px);
+      line-height: 1.9;
+      color: #aaa7b2;
+      max-width: 570px;
+    }
+
+    .about-copy p + p {
+      margin-top: 25px;
+    }
+
+    .about-copy strong {
+      color: var(--ivory);
+      font-weight: 500;
+    }
+
+    .about-visual {
+      min-height: 480px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: radial-gradient(circle, rgba(128,100,255,.12), transparent 65%);
+    }
+
+    .about-visual .visual-shape {
+      width: 260px;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #8064ff, #547aff 60%, #b89b68);
+      filter: url(#liquid-filter);
+      animation: blob-morph 14s ease-in-out infinite alternate;
+      opacity: .7;
+    }
+
+    .visual-caption {
+      position: absolute;
+      bottom: 25px;
+      left: 20px;
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: .12em;
+    }
+
+    /* PHILOSOPHY */
+
+    .manifesto {
+      text-align: center;
+      background: var(--bg);
+    }
+
+    .manifesto blockquote {
+      max-width: 1050px;
+      margin: 0 auto;
+      font-family: var(--display);
+      font-size: clamp(36px, 6.5vw, 82px);
+      font-weight: 600;
+      letter-spacing: -.065em;
+      line-height: 1.12;
+    }
+
+    .manifesto blockquote span {
+      color: var(--violet);
+    }
+
+    .manifesto .attribution {
+      margin-top: 45px;
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .16em;
+    }
+
+    /* EXPLORATIONS */
+
+    .explorations {
+      background: #0c0c11;
+    }
+
+    .exploration-grid {
+      margin-top: 75px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .exploration-card {
+      min-height: 300px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, #17171e, #0c0c11);
+      transition: transform .5s, border-color .5s;
+    }
+
+    .exploration-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(128,100,255,.6);
+    }
+
+    .card-number {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--gold);
+    }
+
+    .card-orb {
+      position: absolute;
+      width: 180px;
+      aspect-ratio: 1;
+      right: -45px;
+      top: 35px;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: .5;
+      background: radial-gradient(circle at 30% 30%, #a18aff, #547aff 45%, transparent 70%);
+      transition: transform .8s;
+    }
+
+    .exploration-card:hover .card-orb {
+      transform: scale(1.35) rotate(35deg);
+    }
+
+    .exploration-card h3 {
+      position: absolute;
+      bottom: 65px;
+      left: 30px;
+      font-family: var(--display);
+      font-size: 29px;
+      letter-spacing: -.05em;
+    }
+
+    .exploration-card p {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* JOURNEY */
+
+    .journey {
+      background: var(--bg);
+    }
+
+    .timeline {
+      max-width: 850px;
+      margin: 75px auto 0;
+      border-left: 1px solid var(--line);
+      padding-left: 45px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 65px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -51px;
+      top: 4px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--violet);
+      box-shadow: 0 0 20px rgba(128,100,255,.6);
+    }
+
+    .timeline-date {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: .1em;
+      margin-bottom: 15px;
+    }
+
+    .timeline-item h3 {
+      font-family: var(--display);
+      font-size: 27px;
+      letter-spacing: -.04em;
+      margin-bottom: 12px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 600px;
+      font-size: 14px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: #101016;
+      text-align: center;
+    }
+
+    .contact .section-title {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contact-description {
+      color: var(--muted);
+      margin: 30px auto 40px;
+      max-width: 470px;
+      line-height: 1.8;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      border: 1px solid rgba(255,255,255,.3);
+      padding: 17px 27px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .1em;
+      transition: background .3s, border-color .3s;
+    }
+
+    .contact-link:hover {
+      background: var(--violet);
+      border-color: var(--violet);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .1em;
+    }
+
+    footer .footer-logo {
+      color: var(--ivory);
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -.07em;
+    }
+
+    /* REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(55px) scale(.97);
+      filter: blur(10px);
+      transition:
+        opacity 1s ease,
+        transform 1.2s cubic-bezier(.16,1,.3,1),
+        filter 1s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    .liquid-hover {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .liquid-hover::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: -100%;
+      background: radial-gradient(ellipse, rgba(128,100,255,.13), transparent 65%);
+      filter: blur(35px);
+      opacity: 0;
+      transition: opacity .5s;
+    }
+
+    .liquid-hover:hover::before {
+      opacity: 1;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+      nav {
+        padding: 22px 6%;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        padding: 30px 6%;
+        flex-direction: column;
+        background: rgba(8,8,12,.96);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero {
+        padding: 120px 6% 80px;
+      }
+
+      .hero-title {
+        font-size: clamp(85px, 21vw, 160px);
+      }
+
+      .hero-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      section:not(.hero) {
+        padding: 100px 7%;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .about-visual {
+        min-height: 320px;
+      }
+
+      .exploration-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .exploration-card {
+        min-height: 250px;
+      }
+
+      .morph-blob {
+        width: 90vw;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div id="progress"></div>
-<div id="cursor"></div>
-<div class="grain"></div>
+  <div class="noise"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
 
-<!-- NAVIGATION -->
-<nav id="navbar">
-  <a href="#hero" class="logo">SENA<span>.</span></a>
+  <!-- SVG LIQUID FILTER -->
+  <svg width="0" height="0" style="position:absolute">
+    <filter id="liquid-filter">
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency=".012"
+        numOctaves="2"
+        seed="8"
+        result="noise">
+        <animate
+          attributeName="baseFrequency"
+          dur="12s"
+          values=".012;.018;.01;.015;.012"
+          repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="noise"
+        scale="38"
+        xChannelSelector="R"
+        yChannelSelector="G"/>
+    </filter>
+  </svg>
 
-  <div class="nav-links" id="navLinks">
-    <a href="#about">ABOUT</a>
-    <a href="#skills">EXPERTISE</a>
-    <a href="#projects">PROJECTS</a>
-    <a href="#journey">JOURNEY</a>
-    <a href="#exploring">EXPLORATION</a>
-    <a href="#contact">CONTACT</a>
-  </div>
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#home" class="logo">SENA.</a>
 
-  <a href="#contact" class="nav-contact mono">LET'S TALK ↗</a>
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-</nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+      ☰
+    </button>
 
-<!-- HERO -->
-<section id="hero">
-  <canvas id="particles"></canvas>
-  <div class="hero-glow"></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#manifesto">Perspective</a></li>
+      <li><a href="#explorations">Explorations</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-  <div class="hero-content">
-    <div class="hero-topline mono">
-      <span>INDEPENDENT MIND / CREATIVE SPIRIT</span>
-      <span>EST. STILL BECOMING — 2026</span>
-    </div>
-
-    <h1 class="hero-title"><span>SENA</span></h1>
-
-    <div class="hero-bottom">
-      <div class="hero-intro">
-        <div class="hero-name">IRSYAD FARIZ SENA PRATAMA</div>
-        <h2 class="hero-role">Creative Developer<br>& Digital Explorer.</h2>
-        <p class="hero-description">
-          Exploring the intersection of technology, creativity, and visual experiences.
-          Building things, questioning everything, and continuously becoming.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">EXPLORE MY WORK ↗</a>
-          <a href="#about" class="btn">ABOUT ME ↓</a>
-        </div>
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="morph-scene" aria-hidden="true">
+        <div class="morph-orb"></div>
+        <div class="morph-blob"></div>
+        <div class="morph-blob second"></div>
       </div>
 
-      <div class="hero-terminal">
-        <div class="terminal-header">
-          <span class="terminal-dot"></span>
-          <span class="terminal-dot"></span>
-          <span class="terminal-dot"></span>
+      <div class="hero-content">
+        <div class="eyebrow reveal">An ongoing exploration of existence — 001</div>
+
+        <h1 class="hero-title">
+          <span>SENA</span>
+        </h1>
+
+        <div class="hero-bottom">
+          <p class="hero-description reveal">
+            An unfinished perspective in an
+            <em>endlessly interesting world.</em>
+            <br>
+            A collection of thoughts, questions, and becoming.
+          </p>
+
+          <div class="scroll-indicator reveal">
+            <span>Scroll to explore</span>
+            <div class="scroll-line"></div>
+          </div>
         </div>
-        <div>$ initializing_identity...</div>
-        <div class="terminal-output">NAME: <span>IRSYAD FARIZ SENA PRATAMA</span></div>
-        <div class="terminal-output">STATUS: <span>EVOLVING</span></div>
-        <div class="terminal-output">MINDSET: <span>CURIOUS</span></div>
-        <div class="terminal-output">PURPOSE: <span>EXPLORATION</span></div>
-        <div class="terminal-output">CURRENT_STATE: <span>STILL_BECOMING</span></div>
-        <div>$ <span class="terminal-cursor">▋</span></div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="scroll-indicator mono">SCROLL TO EXPLORE</div>
-</section>
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="about-grid">
+        <div>
+          <div class="section-label reveal">01 / About</div>
+          <h2 class="section-title reveal">
+            Not a fixed<br>
+            <span class="accent">definition.</span>
+          </h2>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="container about-grid">
-    <div class="reveal">
-      <div class="eyebrow">01 / PERSONAL IDENTITY</div>
-      <h2 class="about-quote">
-        An unfinished perspective in an <em>endlessly interesting world.</em>
+          <div class="about-copy reveal" style="margin-top:35px">
+            <p>
+              I am <strong>Irsyad Fariz Sena Pratama</strong>.
+              But identity is more than a name, and a person is more than a collection of labels.
+            </p>
+
+            <p>
+              I find myself drawn to questions without easy answers,
+              perspectives that challenge familiar assumptions, and
+              the subtle complexity of being human.
+            </p>
+
+            <p>
+              This space is not a conclusion. It is a record of an ongoing process:
+              thinking, questioning, discovering, and changing.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-visual reveal" aria-hidden="true">
+          <div class="visual-shape"></div>
+          <div class="visual-caption">FORM IS NEVER FINAL — 001</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="manifesto" id="manifesto">
+      <div class="section-label reveal">02 / A perspective</div>
+
+      <blockquote class="reveal">
+        "Perhaps the point is not to
+        <span>find ourselves,</span>
+        but to remain curious about
+        who we might become."
+      </blockquote>
+
+      <div class="attribution reveal">A THOUGHT IN PROGRESS — SENA</div>
+    </section>
+
+    <!-- EXPLORATIONS -->
+    <section class="explorations" id="explorations">
+      <div class="section-label reveal">03 / Areas of curiosity</div>
+
+      <h2 class="section-title reveal">
+        Things worth<br>
+        <span class="accent">exploring.</span>
       </h2>
-      <p class="about-text">
-        I am someone fascinated by the complexity of existence, the beauty of ideas,
-        and the possibilities that emerge when different disciplines meet.
-      </p>
-      <p class="about-text">
-        I enjoy exploring unfamiliar perspectives, experimenting with technology,
-        questioning assumptions, and discovering unexpected connections between
-        seemingly unrelated things.
-      </p>
-      <p class="about-text">
-        I don't believe identity is something permanently completed.
-        It is an evolving process shaped by experiences, reflection, curiosity,
-        and the courage to keep changing.
-      </p>
-    </div>
 
-    <div class="about-visual reveal delay-2">
-      <div class="orbit"></div>
-      <div class="orbit"></div>
-      <div class="orbit"></div>
-      <div class="core"></div>
-      <div class="visual-label">FIG 01. / THE EVOLVING MIND</div>
-    </div>
-  </div>
-</section>
+      <div class="exploration-grid">
+        <article class="exploration-card reveal liquid-hover">
+          <span class="card-number">01 — QUESTIONS</span>
+          <div class="card-orb"></div>
+          <h3>Philosophy</h3>
+          <p>Meaning, existence, truth, and reality.</p>
+        </article>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="container">
-    <div class="skills-intro reveal">
-      <div>
-        <div class="eyebrow">02 / CREATIVE CAPABILITIES</div>
-        <h2 class="section-heading">Things I <span class="accent">explore.</span></h2>
+        <article class="exploration-card reveal liquid-hover">
+          <span class="card-number">02 — HUMANITY</span>
+          <div class="card-orb"></div>
+          <h3>Human Nature</h3>
+          <p>Identity, emotion, behavior, and consciousness.</p>
+        </article>
+
+        <article class="exploration-card reveal liquid-hover">
+          <span class="card-number">03 — REFLECTION</span>
+          <div class="card-orb"></div>
+          <h3>Self Discovery</h3>
+          <p>Growth, uncertainty, and becoming.</p>
+        </article>
       </div>
-      <p class="section-description">
-        A collection of technologies, tools, and disciplines that shape
-        my creative and technical exploration. Constantly evolving.
-      </p>
-    </div>
+    </section>
 
-    <div class="skills-grid">
-      <div class="skill-group reveal">
-        <h3>01. Development</h3>
-        <div class="skill-list">
-          <span class="skill">JavaScript</span>
-          <span class="skill">TypeScript</span>
-          <span class="skill">Python</span>
-          <span class="skill">HTML / CSS</span>
-          <span class="skill">React</span>
-          <span class="skill">Next.js</span>
-          <span class="skill">Node.js</span>
-          <span class="skill">API Development</span>
-        </div>
-      </div>
+    <!-- JOURNEY -->
+    <section class="journey" id="journey">
+      <div class="section-label reveal">04 / The process</div>
 
-      <div class="skill-group reveal delay-1">
-        <h3>02. Creative Technology</h3>
-        <div class="skill-list">
-          <span class="skill">Three.js</span>
-          <span class="skill">WebGL</span>
-          <span class="skill">GSAP</span>
-          <span class="skill">Creative Coding</span>
-          <span class="skill">Interactive Experiences</span>
-          <span class="skill">Generative Visuals</span>
-        </div>
-      </div>
-
-      <div class="skill-group reveal">
-        <h3>03. 3D & Motion</h3>
-        <div class="skill-list">
-          <span class="skill">Blender</span>
-          <span class="skill">3D Modeling</span>
-          <span class="skill">Texturing</span>
-          <span class="skill">Lighting</span>
-          <span class="skill">Animation</span>
-          <span class="skill">Motion Graphics</span>
-          <span class="skill">Product Visualization</span>
-        </div>
-      </div>
-
-      <div class="skill-group reveal delay-1">
-        <h3>04. Data & Intelligence</h3>
-        <div class="skill-list">
-          <span class="skill">Python</span>
-          <span class="skill">R</span>
-          <span class="skill">Statistical Analysis</span>
-          <span class="skill">Data Visualization</span>
-          <span class="skill">Machine Learning</span>
-          <span class="skill">Explainable AI</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="container">
-    <div class="project-top reveal">
-      <div>
-        <div class="eyebrow">03 / SELECTED WORK</div>
-        <h2 class="section-heading">Ideas into <span class="accent">reality.</span></h2>
-      </div>
-      <p class="section-description">
-        Experiments, explorations, and projects that represent
-        different stages of creative discovery.
-      </p>
-    </div>
-
-    <div class="filters reveal" id="projectFilters">
-      <button class="filter-btn active" data-filter="all">ALL PROJECTS</button>
-      <button class="filter-btn" data-filter="development">DEVELOPMENT</button>
-      <button class="filter-btn" data-filter="3d">3D ART</button>
-      <button class="filter-btn" data-filter="animation">ANIMATION</button>
-      <button class="filter-btn" data-filter="experiment">EXPERIMENTS</button>
-      <button class="filter-btn" data-filter="research">DATA & RESEARCH</button>
-    </div>
-
-    <div class="project-grid" id="projectGrid"></div>
-  </div>
-</section>
-
-<!-- JOURNEY -->
-<section id="journey">
-  <div class="container">
-    <div class="eyebrow reveal">04 / THE PROCESS</div>
-    <h2 class="section-heading reveal">A journey of <span class="accent">becoming.</span></h2>
-    <p class="section-description reveal">
-      Not a list of achievements. A collection of experiences,
-      experiments, and moments of discovery.
-    </p>
-
-    <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-date">ONGOING</div>
-        <div class="timeline-content">
-          <h3>Continuous Exploration</h3>
-          <p>
-            Exploring creative technology, interactive experiences,
-            artificial intelligence, and the relationship between
-            technology and human perception.
-          </p>
-          <small>CREATIVE DEVELOPMENT / EXPERIMENTATION</small>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-date">2026</div>
-        <div class="timeline-content">
-          <h3>Creative Identity Development</h3>
-          <p>
-            Building a personal creative identity through digital
-            experiences, interactive design, visual experiments,
-            and independent exploration.
-          </p>
-          <small>DESIGN / WEB DEVELOPMENT / PERSONAL PROJECTS</small>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-date">ONGOING</div>
-        <div class="timeline-content">
-          <h3>Research & Technical Exploration</h3>
-          <p>
-            Investigating the possibilities of data, computational
-            methods, artificial intelligence, and evidence-based thinking.
-          </p>
-          <small>DATA / RESEARCH / COMPUTATIONAL THINKING</small>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-date">ALWAYS</div>
-        <div class="timeline-content">
-          <h3>Still Becoming</h3>
-          <p>
-            Learning without assuming that the process has a final destination.
-            Remaining open to new ideas, perspectives, and possibilities.
-          </p>
-          <small>EXPLORATION / REFLECTION / EVOLUTION</small>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPLORATION -->
-<section id="exploring">
-  <div class="container">
-    <div class="eyebrow reveal">05 / CURRENT CURIOSITIES</div>
-    <h2 class="section-heading reveal">Beyond the <span class="accent">obvious.</span></h2>
-    <p class="section-description reveal">
-      Some questions are too interesting to leave unexplored.
-    </p>
-
-    <div class="explore-list">
-      <div class="explore-item">
-        <button class="explore-trigger">
-          <h3>Creative Coding</h3><span>+</span>
-        </button>
-        <div class="explore-detail">
-          <p>
-            Using programming as a creative medium. Exploring algorithms,
-            visual systems, procedural design, and the unexpected beauty
-            of computational processes.
-          </p>
-        </div>
-      </div>
-
-      <div class="explore-item">
-        <button class="explore-trigger">
-          <h3>Generative Art</h3><span>+</span>
-        </button>
-        <div class="explore-detail">
-          <p>
-            Creating visual compositions through rules, randomness,
-            mathematics, and computational systems. Exploring the
-            relationship between control and unpredictability.
-          </p>
-        </div>
-      </div>
-
-      <div class="explore-item">
-        <button class="explore-trigger">
-          <h3>Artificial Intelligence</h3><span>+</span>
-        </button>
-        <div class="explore-detail">
-          <p>
-            Exploring machine intelligence, generative systems,
-            explainability, and the philosophical implications of
-            increasingly capable computational systems.
-          </p>
-        </div>
-      </div>
-
-      <div class="explore-item">
-        <button class="explore-trigger">
-          <h3>3D Environments & Motion</h3><span>+</span>
-        </button>
-        <div class="explore-detail">
-          <p>
-            Exploring spatial storytelling, digital environments,
-            lighting, animation, and immersive visual experiences.
-          </p>
-        </div>
-      </div>
-
-      <div class="explore-item">
-        <button class="explore-trigger">
-          <h3>Interactive Storytelling</h3><span>+</span>
-        </button>
-        <div class="explore-detail">
-          <p>
-            Investigating how interaction can transform passive
-            observation into active participation and meaningful
-            digital experiences.
-          </p>
-        </div>
-      </div>
-
-      <div class="explore-item">
-        <button class="explore-trigger">
-          <h3>Philosophy & Human Perception</h3><span>+</span>
-        </button>
-        <div class="explore-detail">
-          <p>
-            Questioning identity, consciousness, morality, knowledge,
-            reality, and the ways humans interpret the world around them.
-          </p>
-        </div>
-      </div>
-
-      <div class="explore-item">
-        <button class="explore-trigger">
-          <h3>Data-driven Visual Experiences</h3><span>+</span>
-        </button>
-        <div class="explore-detail">
-          <p>
-            Transforming complex information into visual narratives
-            that make patterns, relationships, and insights easier
-            to understand.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container contact-grid">
-    <div class="reveal">
-      <div class="eyebrow">06 / CONNECTION</div>
-      <h2 class="contact-heading">
-        Have an <em>interesting</em> idea?
+      <h2 class="section-title reveal">
+        Still <span class="accent">becoming.</span>
       </h2>
-      <p class="section-description">
-        Let's explore what we can create together.
-        Open to interesting conversations, collaborations,
-        creative experiments, and unexpected possibilities.
+
+      <div class="timeline">
+        <article class="timeline-item reveal">
+          <div class="timeline-date">01 — QUESTIONING</div>
+          <h3>Learning to question</h3>
+          <p>
+            Looking beyond familiar answers and beginning to examine
+            the assumptions that shape how the world is understood.
+          </p>
+        </article>
+
+        <article class="timeline-item reveal">
+          <div class="timeline-date">02 — EXPLORING</div>
+          <h3>Exploring different perspectives</h3>
+          <p>
+            Encountering ideas, experiences, and perspectives that
+            make certainty less important than understanding.
+          </p>
+        </article>
+
+        <article class="timeline-item reveal">
+          <div class="timeline-date">03 — REFLECTING</div>
+          <h3>Understanding through reflection</h3>
+          <p>
+            Revisiting thoughts, recognizing contradictions,
+            and accepting that personal understanding can change.
+          </p>
+        </article>
+
+        <article class="timeline-item reveal">
+          <div class="timeline-date">04 — BECOMING</div>
+          <h3>Continuing without a final form</h3>
+          <p>
+            No definitive destination. Just an ongoing willingness
+            to learn, reconsider, and become.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="section-label reveal">05 / Connection</div>
+
+      <h2 class="section-title reveal">
+        Every perspective<br>
+        begins with a <span class="accent">conversation.</span>
+      </h2>
+
+      <p class="contact-description reveal">
+        Have an interesting thought, a question, or a perspective worth discussing?
+        Let's start a conversation.
       </p>
 
-      <div class="contact-links" id="socialLinks"></div>
-    </div>
+      <!-- Ganti alamat email di bawah dengan alamat email milikmu -->
+      <a class="contact-link reveal" href="mailto:your-email@example.com">
+        START A CONVERSATION <span>↗</span>
+      </a>
+    </section>
+  </main>
 
-    <form class="contact-form reveal delay-2" id="contactForm">
-      <div class="form-group">
-        <label for="name">Your Name</label>
-        <input id="name" name="name" type="text" placeholder="What should I call you?" required>
-      </div>
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">SENA.</span>
+    <span>AN UNFINISHED PERSPECTIVE.</span>
+    <span>© <span id="year"></span> — STILL BECOMING</span>
+  </footer>
 
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input id="email" name="email" type="email" placeholder="your@email.com" required>
-      </div>
+  <script>
+    (() => {
+      "use strict";
 
-      <div class="form-group">
-        <label for="type">Collaboration Type</label>
-        <select id="type" name="type" required>
-          <option value="">Select an option</option>
-          <option>Creative Development</option>
-          <option>3D Art & Animation</option>
-          <option>Web Development</option>
-          <option>Research & Data</option>
-          <option>Creative Collaboration</option>
-          <option>Just a Conversation</option>
-          <option>Other</option>
-        </select>
-      </div>
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
 
-      <div class="form-group">
-        <label for="message">Your Message</label>
-        <textarea id="message" name="message" placeholder="Tell me about your idea..." required></textarea>
-      </div>
+      // Dynamic year
+      document.getElementById("year").textContent =
+        new Date().getFullYear();
 
-      <button type="submit" class="btn btn-primary">PREPARE MESSAGE ↗</button>
-      <div class="form-status" id="formStatus" aria-live="polite"></div>
-    </form>
-  </div>
-</section>
+      // Mobile navigation
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">SENA<span>.</span></div>
-      <div class="footer-statement">Still becoming.<br>Always exploring.</div>
-    </div>
-
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> IRSYAD FARIZ SENA PRATAMA</span>
-      <span>AN UNFINISHED PERSPECTIVE.</span>
-      <button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">BACK TO TOP ↑</button>
-    </div>
-  </div>
-</footer>
-
-<!-- PROJECT MODAL -->
-<div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-content" id="modalContent">
-    <button class="modal-close" id="modalClose" aria-label="Close project details">×</button>
-    <div id="modalBody"></div>
-  </div>
-</div>
-
-<script>
-/* =========================================
-   SENA — CENTRAL CONFIGURATION
-========================================= */
-
-const CONFIG = {
-  email: "",
-
-  socials: {
-    github: "",
-    linkedin: "",
-    instagram: ""
-  },
-
-  projects: [
-    {
-      id: "mindspace",
-      number: "01",
-      title: "MINDSPACE",
-      category: "development",
-      label: "INTERACTIVE WEB EXPERIENCE",
-      year: "2026",
-      description: "A digital space concept exploring self-reflection, personal awareness, and interactive experiences.",
-      objective: "Develop an interactive digital environment designed around personal reflection and exploration.",
-      problem: "Creating an experience that combines accessible interfaces with a meaningful and engaging interaction model.",
-      concept: "A digital environment where visual design and interaction support personal exploration.",
-      process: "Interface design, information architecture, interaction development, and iterative refinement.",
-      technologies: ["HTML", "CSS", "JavaScript", "Interactive UI"],
-      challenges: "Designing a coherent experience while balancing visual complexity and usability.",
-      results: "A developing personal project. Final outcomes and evaluation remain to be documented.",
-      lessons: "The importance of accessible interaction design and thoughtful digital experiences.",
-      image: "",
-      github: "https://github.com/irsyadsnp/MINDSPACE",
-      demo: ""
-    },
-    {
-      id: "maze",
-      number: "02",
-      title: "MAZE ESCAPE",
-      category: "development",
-      label: "BROWSER GAME",
-      year: "2026",
-      description: "A browser-based maze game experiment with keyboard and touchscreen interaction.",
-      objective: "Build a playable browser game with accessible controls and progressively challenging gameplay.",
-      problem: "Creating intuitive navigation and responsive game interactions across different devices.",
-      concept: "A minimal interactive maze experience.",
-      process: "Game logic, maze navigation, input handling, visual design, and responsive implementation.",
-      technologies: ["HTML", "CSS", "JavaScript", "Game Logic"],
-      challenges: "Supporting multiple input methods and maintaining consistent game behavior.",
-      results: "A playable game prototype. Additional gameplay features can be developed.",
-      lessons: "How interaction design and game logic work together.",
-      image: "",
-      github: "https://github.com/irsyadsnp/maze-escape",
-      demo: ""
-    },
-    {
-      id: "statlab",
-      number: "03",
-      title: "STATLAB AI",
-      category: "research",
-      label: "DATA SCIENCE EXPERIMENT",
-      year: "2026",
-      description: "An ongoing concept for an integrated data analysis and research environment.",
-      objective: "Explore a workflow for dataset exploration, statistical analysis, machine learning, and explainability.",
-      problem: "Data analysis workflows often involve fragmented tools and repetitive processes.",
-      concept: "An integrated analytical environment with modular workflows.",
-      process: "Exploring dataset inspection, exploratory analysis, modeling, and reporting.",
-      technologies: ["Python", "R", "Statistics", "Machine Learning", "XAI"],
-      challenges: "Designing reliable workflows that maintain methodological transparency.",
-      results: "An ongoing development concept. No final performance claims are made.",
-      lessons: "The importance of reproducibility and methodological validation.",
-      image: "",
-      github: "",
-      demo: ""
-    },
-    {
-      id: "climate",
-      number: "04",
-      title: "CLIMATE EXPLORATION",
-      category: "research",
-      label: "DATA & RESEARCH",
-      year: "2026",
-      description: "An ongoing exploration of climate data, spatial patterns, and computational analysis.",
-      objective: "Investigate spatial and temporal structures in climate-related datasets.",
-      problem: "Large environmental datasets require careful processing, validation, and interpretation.",
-      concept: "A research workflow combining statistical analysis and spatial data exploration.",
-      process: "Data auditing, preprocessing, exploratory analysis, dimensionality reduction, and temporal investigation.",
-      technologies: ["Python", "Statistics", "Pandas", "Geospatial Analysis"],
-      challenges: "Data integrity, computational scale, and methodological consistency.",
-      results: "An ongoing research exploration. Results should be interpreted in the context of the corresponding research analysis.",
-      lessons: "The value of data validation before statistical interpretation.",
-      image: "",
-      github: "",
-      demo: ""
-    },
-    {
-      id: "creative",
-      number: "05",
-      title: "DIGITAL EXPERIMENTS",
-      category: "experiment",
-      label: "CREATIVE TECHNOLOGY",
-      year: "ONGOING",
-      description: "A space for independent experiments with interactive design, visual systems, and creative coding.",
-      objective: "Investigate new ways to combine code, visual composition, and digital interaction.",
-      problem: "Translating abstract ideas into functional visual experiences.",
-      concept: "A collection of small experiments and explorations.",
-      process: "Rapid prototyping, visual iteration, interaction testing, and refinement.",
-      technologies: ["JavaScript", "CSS", "Creative Coding"],
-      challenges: "Balancing experimentation with functional constraints.",
-      results: "An evolving collection of creative explorations.",
-      lessons: "Experimentation is an important part of the creative process.",
-      image: "",
-      github: "",
-      demo: ""
-    },
-    {
-      id: "visual",
-      number: "06",
-      title: "MOTION STUDIES",
-      category: "animation",
-      label: "MOTION & VISUAL DESIGN",
-      year: "ONGOING",
-      description: "Explorations of movement, transitions, visual storytelling, and cinematic digital experiences.",
-      objective: "Study how movement can communicate hierarchy, emotion, and visual meaning.",
-      problem: "Creating motion that supports content rather than distracting from it.",
-      concept: "A collection of motion and animation experiments.",
-      process: "Composition, timing, movement studies, and visual iteration.",
-      technologies: ["GSAP", "CSS Animation", "Motion Design"],
-      challenges: "Establishing a balance between visual expression and usability.",
-      results: "An ongoing collection of motion experiments.",
-      lessons: "Intentional animation can improve the clarity of an experience.",
-      image: "",
-      github: "",
-      demo: ""
-    }
-  ]
-};
-
-/* =========================================
-   PROJECT RENDERING
-========================================= */
-
-const projectGrid = document.getElementById("projectGrid");
-const modal = document.getElementById("projectModal");
-const modalBody = document.getElementById("modalBody");
-
-function projectImage(project) {
-  if (project.image) return project.image;
-
-  const palettes = {
-    development: ["#171327","#45306f"],
-    research: ["#101b23","#24505b"],
-    animation: ["#25131f","#693c68"],
-    "3d": ["#1b1728","#654e87"],
-    experiment: ["#171a2b","#354b7a"]
-  };
-
-  const colors = palettes[project.category] || palettes.experiment;
-
-  const svg = `
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560">
-    <defs>
-      <radialGradient id="g">
-        <stop stop-color="${colors[1]}"/>
-        <stop offset="1" stop-color="${colors[0]}"/>
-      </radialGradient>
-      <filter id="blur"><feGaussianBlur stdDeviation="30"/></filter>
-    </defs>
-    <rect width="900" height="560" fill="url(#g)"/>
-    <circle cx="670" cy="210" r="160" fill="#a38bff" opacity=".18" filter="url(#blur)"/>
-    <circle cx="680" cy="220" r="105" fill="none" stroke="#d4c4ff" stroke-opacity=".45"/>
-    <circle cx="680" cy="220" r="145" fill="none" stroke="#d4c4ff" stroke-opacity=".2" transform="rotate(35 680 220) scale(1 .45)"/>
-    <path d="M0 410 Q250 330 480 410 T900 380" stroke="#fff" stroke-opacity=".15" fill="none"/>
-    <text x="65" y="250" fill="#fff" font-family="Arial" font-size="76" font-weight="bold">${project.title.replace(/&/g,"&amp;")}</text>
-    <text x="70" y="300" fill="#d0c7e7" font-family="monospace" font-size="15">${project.label}</text>
-    <text x="70" y="490" fill="#c6a875" font-family="monospace" font-size="12">SENA / CREATIVE EXPLORATION</text>
-  </svg>`;
-
-  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
-}
-
-function renderProjects(filter = "all") {
-  projectGrid.innerHTML = "";
-
-  CONFIG.projects
-    .filter(p => filter === "all" || p.category === filter)
-    .forEach((project) => {
-      const card = document.createElement("article");
-      card.className = "project-card reveal";
-      card.tabIndex = 0;
-      card.setAttribute("role","button");
-      card.setAttribute("aria-label","View project " + project.title);
-
-      const image = document.createElement("div");
-      image.className = "project-image";
-
-      const img = document.createElement("img");
-      img.src = projectImage(project);
-      img.alt = project.title + " project visual";
-      img.loading = "lazy";
-
-      const number = document.createElement("span");
-      number.className = "project-number";
-      number.textContent = project.number;
-
-      const view = document.createElement("span");
-      view.className = "project-view";
-      view.textContent = "↗";
-
-      image.append(img,number,view);
-
-      const meta = document.createElement("div");
-      meta.className = "project-meta";
-
-      const category = document.createElement("span");
-      category.textContent = project.label;
-
-      const year = document.createElement("span");
-      year.textContent = project.year;
-
-      meta.append(category,year);
-
-      const title = document.createElement("h3");
-      title.className = "project-title";
-      title.textContent = project.title;
-
-      const description = document.createElement("p");
-      description.className = "project-description";
-      description.textContent = project.description;
-
-      const tags = document.createElement("div");
-      tags.className = "project-tags";
-
-      project.technologies.forEach(tech => {
-        const tag = document.createElement("span");
-        tag.textContent = tech;
-        tags.appendChild(tag);
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.textContent = isOpen ? "×" : "☰";
       });
 
-      card.append(image,meta,title,description,tags);
+      navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.textContent = "☰";
+        });
+      });
 
-      card.addEventListener("click",() => openProject(project.id));
-      card.addEventListener("keydown",e => {
-        if(e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openProject(project.id);
+      // Scroll reveal
+      const revealElements = document.querySelectorAll(".reveal");
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              obs.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: "0px 0px -35px 0px"
+        });
+
+        revealElements.forEach(element => observer.observe(element));
+      } else {
+        revealElements.forEach(element => element.classList.add("visible"));
+      }
+
+      // Cursor glow and organic morph interaction
+      const cursorGlow = document.getElementById("cursorGlow");
+      const morphScene = document.querySelector(".morph-scene");
+
+      if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let currentX = mouseX;
+        let currentY = mouseY;
+
+        window.addEventListener("pointermove", event => {
+          mouseX = event.clientX;
+          mouseY = event.clientY;
+        }, { passive: true });
+
+        function animateCursor() {
+          currentX += (mouseX - currentX) * 0.09;
+          currentY += (mouseY - currentY) * 0.09;
+
+          cursorGlow.style.left = currentX + "px";
+          cursorGlow.style.top = currentY + "px";
+
+          if (morphScene) {
+            const offsetX = (mouseX / window.innerWidth - 0.5) * 35;
+            const offsetY = (mouseY / window.innerHeight - 0.5) * 35;
+
+            morphScene.style.setProperty("--mouse-x", offsetX + "px");
+            morphScene.style.setProperty("--mouse-y", offsetY + "px");
+          }
+
+          requestAnimationFrame(animateCursor);
         }
+
+        animateCursor();
+      } else {
+        cursorGlow.style.display = "none";
+      }
+
+      // Subtle parallax for hero blobs
+      if (!reducedMotion && window.matchMedia("(pointer: fine)").matches) {
+        const blobs = document.querySelectorAll(".morph-blob");
+
+        window.addEventListener("pointermove", event => {
+          const x = (event.clientX / window.innerWidth - 0.5) * 20;
+          const y = (event.clientY / window.innerHeight - 0.5) * 20;
+
+          blobs.forEach((blob, index) => {
+            const factor = index === 0 ? 1 : -0.65;
+            blob.style.marginLeft = (x * factor) + "px";
+            blob.style.marginTop = (y * factor) + "px";
+          });
+        }, { passive: true });
+      }
+
+      // Smooth anchor navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", event => {
+          const target = document.querySelector(anchor.getAttribute("href"));
+          if (!target) return;
+
+          event.preventDefault();
+          target.scrollIntoView({
+            behavior: reducedMotion ? "auto" : "smooth",
+            block: "start"
+          });
+        });
       });
-
-      projectGrid.appendChild(card);
-    });
-
-  observeReveals();
-}
-
-document.querySelectorAll(".filter-btn").forEach(button => {
-  button.addEventListener("click",() => {
-    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-    button.classList.add("active");
-    renderProjects(button.dataset.filter);
-  });
-});
-
-/* =========================================
-   PROJECT DETAILS
-========================================= */
-
-function openProject(id) {
-  const p = CONFIG.projects.find(project => project.id === id);
-  if(!p) return;
-
-  modalBody.innerHTML = "";
-
-  const eyebrow = document.createElement("div");
-  eyebrow.className = "eyebrow";
-  eyebrow.textContent = p.label + " / " + p.year;
-
-  const title = document.createElement("h2");
-  title.id = "modalTitle";
-  title.textContent = p.title;
-
-  const image = document.createElement("img");
-  image.className = "modal-hero";
-  image.src = projectImage(p);
-  image.alt = p.title + " visual";
-
-  modalBody.append(eyebrow,title,image);
-
-  const sections = [
-    ["01 / INTRODUCTION",p.description],
-    ["02 / OBJECTIVE",p.objective],
-    ["03 / PROBLEM & CONTEXT",p.problem],
-    ["04 / CONCEPT & INSPIRATION",p.concept],
-    ["05 / PROCESS",p.process],
-    ["06 / TECHNICAL CHALLENGES",p.challenges],
-    ["07 / RESULTS",p.results],
-    ["08 / LESSONS LEARNED",p.lessons]
-  ];
-
-  sections.forEach(([heading,content]) => {
-    const wrapper = document.createElement("div");
-    wrapper.className = "modal-section";
-
-    const h = document.createElement("h3");
-    h.textContent = heading;
-
-    const paragraph = document.createElement("p");
-    paragraph.textContent = content;
-
-    wrapper.append(h,paragraph);
-    modalBody.appendChild(wrapper);
-  });
-
-  const techSection = document.createElement("div");
-  techSection.className = "modal-section";
-
-  const techTitle = document.createElement("h3");
-  techTitle.textContent = "TOOLS & TECHNOLOGIES";
-
-  const techList = document.createElement("div");
-  techList.className = "modal-tech";
-
-  p.technologies.forEach(t => {
-    const span = document.createElement("span");
-    span.textContent = t;
-    techList.appendChild(span);
-  });
-
-  techSection.append(techTitle,techList);
-  modalBody.appendChild(techSection);
-
-  const links = document.createElement("div");
-  links.className = "modal-links";
-
-  if(p.github) {
-    const a = document.createElement("a");
-    a.className = "btn";
-    a.href = p.github;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.textContent = "GITHUB REPOSITORY ↗";
-    links.appendChild(a);
-  }
-
-  if(p.demo) {
-    const a = document.createElement("a");
-    a.className = "btn btn-primary";
-    a.href = p.demo;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.textContent = "LIVE DEMO ↗";
-    links.appendChild(a);
-  }
-
-  if(links.children.length) modalBody.appendChild(links);
-
-  modal.classList.add("open");
-  document.body.classList.add("modal-open");
-  document.getElementById("modalClose").focus();
-}
-
-function closeModal() {
-  modal.classList.remove("open");
-  document.body.classList.remove("modal-open");
-}
-
-document.getElementById("modalClose").addEventListener("click",closeModal);
-
-modal.addEventListener("click",e => {
-  if(e.target === modal) closeModal();
-});
-
-document.addEventListener("keydown",e => {
-  if(e.key === "Escape") closeModal();
-});
-
-/* =========================================
-   EXPLORATION ACCORDION
-========================================= */
-
-document.querySelectorAll(".explore-trigger").forEach(trigger => {
-  trigger.addEventListener("click",() => {
-    const item = trigger.parentElement;
-    const isOpen = item.classList.contains("open");
-
-    document.querySelectorAll(".explore-item").forEach(el => {
-      el.classList.remove("open");
-      el.querySelector(".explore-trigger span").textContent = "+";
-      el.querySelector(".explore-trigger").setAttribute("aria-expanded","false");
-    });
-
-    if(!isOpen) {
-      item.classList.add("open");
-      trigger.querySelector("span").textContent = "−";
-      trigger.setAttribute("aria-expanded","true");
-    }
-  });
-
-  trigger.setAttribute("aria-expanded","false");
-});
-
-/* =========================================
-   CONTACT CONFIGURATION
-========================================= */
-
-const socialContainer = document.getElementById("socialLinks");
-
-Object.entries(CONFIG.socials).forEach(([platform,url]) => {
-  if(!url) return;
-
-  const link = document.createElement("a");
-  link.href = url;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.textContent = platform.toUpperCase() + " ↗";
-
-  socialContainer.appendChild(link);
-});
-
-document.getElementById("contactForm").addEventListener("submit",e => {
-  e.preventDefault();
-
-  const form = e.currentTarget;
-  const status = document.getElementById("formStatus");
-
-  if(!form.reportValidity()) return;
-
-  if(!CONFIG.email || !CONFIG.email.includes("@")) {
-    status.textContent = "Email integration is not configured. Please configure CONFIG.email.";
-    return;
-  }
-
-  const data = new FormData(form);
-
-  const subject = encodeURIComponent(
-    "Portfolio Inquiry — " + data.get("type")
-  );
-
-  const body = encodeURIComponent(
-    "Name: " + data.get("name") +
-    "\nEmail: " + data.get("email") +
-    "\nCollaboration: " + data.get("type") +
-    "\n\nMessage:\n" + data.get("message")
-  );
-
-  status.textContent = "Opening your email application...";
-
-  window.location.href =
-    "mailto:" + CONFIG.email +
-    "?subject=" + subject +
-    "&body=" + body;
-});
-
-/* =========================================
-   PARTICLE SYSTEM
-========================================= */
-
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-
-let particles = [];
-let mouse = {x:-1000,y:-1000};
-let animationFrame;
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-function resizeCanvas() {
-  const rect = canvas.getBoundingClientRect();
-  const dpr = Math.min(window.devicePixelRatio || 1,2);
-
-  canvas.width = rect.width * dpr;
-  canvas.height = rect.height * dpr;
-
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-
-  particles = Array.from({
-    length:Math.min(90,Math.floor(rect.width/12))
-  },() => ({
-    x:Math.random()*rect.width,
-    y:Math.random()*rect.height,
-    size:Math.random()*1.7+.3,
-    speed:Math.random()*.25+.05,
-    opacity:Math.random()*.5+.1,
-    phase:Math.random()*Math.PI*2
-  }));
-}
-
-function drawParticles(time = 0) {
-  const rect = canvas.getBoundingClientRect();
-
-  ctx.clearRect(0,0,rect.width,rect.height);
-
-  particles.forEach(p => {
-    if(!reducedMotion) p.y -= p.speed;
-
-    if(p.y < 0) {
-      p.y = rect.height;
-      p.x = Math.random()*rect.width;
-    }
-
-    const dx = mouse.x-p.x;
-    const dy = mouse.y-p.y;
-    const distance = Math.sqrt(dx*dx+dy*dy);
-
-    let alpha = p.opacity;
-
-    if(distance < 130) {
-      alpha += (1-distance/130)*.45;
-    }
-
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-    ctx.fillStyle = `rgba(184,163,255,${alpha})`;
-    ctx.fill();
-
-    if(distance < 130) {
-      ctx.beginPath();
-      ctx.moveTo(p.x,p.y);
-      ctx.lineTo(mouse.x,mouse.y);
-      ctx.strokeStyle = `rgba(141,114,255,${(1-distance/130)*.12})`;
-      ctx.stroke();
-    }
-  });
-
-  if(!reducedMotion) {
-    animationFrame = requestAnimationFrame(drawParticles);
-  }
-}
-
-canvas.addEventListener("mousemove",e => {
-  const rect = canvas.getBoundingClientRect();
-  mouse.x = e.clientX-rect.left;
-  mouse.y = e.clientY-rect.top;
-});
-
-canvas.addEventListener("mouseleave",() => {
-  mouse.x = -1000;
-  mouse.y = -1000;
-});
-
-resizeCanvas();
-drawParticles();
-
-window.addEventListener("resize",() => {
-  resizeCanvas();
-  if(reducedMotion) drawParticles();
-});
-
-/* =========================================
-   NAVIGATION
-========================================= */
-
-const navbar = document.getElementById("navbar");
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-menuToggle.addEventListener("click",() => {
-  const isOpen = navLinks.classList.toggle("show");
-  menuToggle.setAttribute("aria-expanded",String(isOpen));
-  menuToggle.textContent = isOpen ? "×" : "☰";
-});
-
-navLinks.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click",() => {
-    navLinks.classList.remove("show");
-    menuToggle.setAttribute("aria-expanded","false");
-    menuToggle.textContent = "☰";
-  });
-});
-
-window.addEventListener("scroll",() => {
-  navbar.classList.toggle("scrolled",window.scrollY > 50);
-
-  const scrollable =
-    document.documentElement.scrollHeight-window.innerHeight;
-
-  const progress = scrollable > 0
-    ? window.scrollY/scrollable*100
-    : 0;
-
-  document.getElementById("progress").style.width = progress+"%";
-});
-
-/* =========================================
-   ACTIVE NAVIGATION
-========================================= */
-
-const navAnchors = [...document.querySelectorAll(".nav-links a")];
-
-const sectionObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) {
-      navAnchors.forEach(link => {
-        link.classList.toggle(
-          "active",
-          link.getAttribute("href") === "#"+entry.target.id
-        );
-      });
-    }
-  });
-},{threshold:0.25});
-
-document.querySelectorAll("section[id]").forEach(section => {
-  sectionObserver.observe(section);
-});
-
-/* =========================================
-   REVEAL ANIMATIONS
-========================================= */
-
-let revealObserver;
-
-function observeReveals() {
-  if(reducedMotion) {
-    document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
-    return;
-  }
-
-  if(!revealObserver) {
-    revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },{threshold:.08});
-  }
-
-  document.querySelectorAll(".reveal:not(.visible)").forEach(el => {
-    revealObserver.observe(el);
-  });
-}
-
-/* =========================================
-   CUSTOM CURSOR
-========================================= */
-
-const cursor = document.getElementById("cursor");
-
-if(window.matchMedia("(hover:hover) and (pointer:fine)").matches && !reducedMotion) {
-  document.body.classList.add("custom-cursor");
-  cursor.style.display = "block";
-
-  window.addEventListener("mousemove",e => {
-    cursor.style.left = e.clientX+"px";
-    cursor.style.top = e.clientY+"px";
-  });
-
-  document.querySelectorAll("a,button,.project-card").forEach(el => {
-    el.addEventListener("mouseenter",() => cursor.classList.add("active"));
-    el.addEventListener("mouseleave",() => cursor.classList.remove("active"));
-  });
-}
-
-/* =========================================
-   HERO PARALLAX
-========================================= */
-
-if(!reducedMotion && window.matchMedia("(pointer:fine)").matches) {
-  const heroTitle = document.querySelector(".hero-title");
-  const heroGlow = document.querySelector(".hero-glow");
-
-  document.addEventListener("mousemove",e => {
-    const x = (e.clientX/window.innerWidth-.5)*2;
-    const y = (e.clientY/window.innerHeight-.5)*2;
-
-    heroTitle.style.transform =
-      `translate(${x*7}px,${y*5}px)`;
-
-    heroGlow.style.transform =
-      `translate(${x*-25}px,${y*-20}px)`;
-  });
-}
-
-/* =========================================
-   INITIALIZATION
-========================================= */
-
-document.getElementById("year").textContent = new Date().getFullYear();
-
-renderProjects();
-observeReveals();
-
-</script>
+    })();
+  </script>
 </body>
 </html>
